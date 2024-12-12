@@ -1,13 +1,16 @@
 import { NavLink } from "react-router-dom";
 import './navbar.css'
 import logo from '../../assets/2.png'
+import { motion } from "framer-motion";
 
 
 const Navbar = () => {
 
     const links = <>
     
-                <NavLink to="/">Home</NavLink>
+                <NavLink to="/" className={`dropdown`}>Home
+                
+                </NavLink>
                 <NavLink to="findJob" >Find A Job</NavLink>
                 <NavLink to="candidates" >Candidates</NavLink>
                 <NavLink to="blogs" >Blogs</NavLink>
@@ -51,7 +54,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="bg-blue-600 py-2 px-5 text-white font-semibold rounded-md">Login</a>
+                    <motion.a whileHover={{scale:1, y:-2, dumping:10, stiffness: 400}} className="bg-blue-600 py-2 px-5 text-white font-semibold rounded-md">Login</motion.a>
                 </div>
             </div>
 
