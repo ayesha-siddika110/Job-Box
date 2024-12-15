@@ -1,4 +1,5 @@
-import { GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, TwitterAuthProvider } from 'firebase/auth';
+/* eslint-disable react-refresh/only-export-components */
+import { GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, TwitterAuthProvider, } from 'firebase/auth';
 import { createContext, useEffect, useState } from 'react';
 import { auth } from '../firebase/Firebase.init';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -35,6 +36,10 @@ const AuthProvider = ({children}) => {
         return signInWithPopup(auth, githubProvider)
     }
 
+    const signOutUser = ()=>{
+        return signOut(auth)
+    }
+
 const [user,setUser] = useState()
 useEffect(()=>{
     const unsubscribe = onAuthStateChanged(auth, currentUser=>{
@@ -60,7 +65,8 @@ console.log(user);
     user,
     signIntWitter,
     signInWithGoogle,
-    signInGithub
+    signInGithub,
+    signOutUser
     
     
  }

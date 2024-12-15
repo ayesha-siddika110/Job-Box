@@ -3,10 +3,26 @@ import { Link } from 'react-router-dom';
 import Lottie from 'lottie-react';
 import loginLottie from '../../assets/LottieImages/login.json'
 import SigninWithGoogle from './signinWithGoogle';
+import { useContext } from 'react';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Login = () => {
+    const {signInUser} = useContext(AuthContext)
     const handleSignIn =(e)=>{
         e.preventDefault()
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        signInUser(email,password)
+        .then(res=>{
+            console.log(res);
+            
+        })
+        .catch(err=>{
+            console.log(err);
+            
+        })
+
+
 
     }
     return (

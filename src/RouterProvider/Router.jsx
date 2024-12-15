@@ -6,6 +6,9 @@ import MainLayout from "../Layouts/MainLayout";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import FindJob from "../pages/FindJob/FindJob";
+import PrivetRouter from "./PrivetRouter/PrivetRouter";
+import PublishJob from "../pages/PublishJob/PublishJob";
 
   export const Router = createBrowserRouter([
     {
@@ -25,7 +28,17 @@ import Register from "../pages/Register/Register";
         {
           path: "/register",
           element: <Register></Register>
-        }
+        },
+        {
+          path: "/findJob",
+          element: <FindJob></FindJob>
+        },
+        {
+          path: "/publishJob",
+          element: <PrivetRouter><PublishJob></PublishJob></PrivetRouter>
+        },
+        
+
       ]
     },
   ]);
