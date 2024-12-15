@@ -9,6 +9,7 @@ import Register from "../pages/Register/Register";
 import FindJob from "../pages/FindJob/FindJob";
 import PrivetRouter from "./PrivetRouter/PrivetRouter";
 import PublishJob from "../pages/PublishJob/PublishJob";
+import JobApply from "../pages/JobApply/JobApply";
 
   export const Router = createBrowserRouter([
     {
@@ -37,6 +38,10 @@ import PublishJob from "../pages/PublishJob/PublishJob";
           path: "/publishJob",
           element: <PrivetRouter><PublishJob></PublishJob></PrivetRouter>
         },
+        {
+          path: "/jobApply/:id",
+          element: <PrivetRouter><JobApply></JobApply></PrivetRouter>
+        }
         
 
       ]

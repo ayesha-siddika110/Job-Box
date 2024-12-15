@@ -1,7 +1,7 @@
 
-import Lottie from "lottie-react";
-import banner from '../../../assets/LottieImages/banner.json'
-import React, { useRef, useState } from 'react';
+// import Lottie from "lottie-react";
+// import banner from '../../../assets/LottieImages/banner.json'
+// import React, { useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
