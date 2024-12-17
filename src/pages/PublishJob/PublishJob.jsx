@@ -1,56 +1,69 @@
 
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const PublishJob = () => {
+    const navigate = useNavigate()
+    const {user} = useContext(AuthContext)
     const handlePublishJob = (e) => {
         e.preventDefault()
-        const form = e.target;
-        const title = form.title.value
-        const company = form.company.value
-        const city = form.city.value
-        const state = form.state.value
-        const country = form.country.value
-        const type = form.type.value
-        const description = form.description.value
-        const min = form.min.value
-        const max = form.max.value
-        const currency = form.currency.value
-        const logo = form.logo.value
-        const js = form.javaScript.value
-        const python = form.python.value
-        const node = form.nodeJS.value
-        const react = form.react.value
+        // const form = e.target;
+        // const title = form.title.value
+        // const company = form.company.value
+        // const city = form.city.value
+        // const state = form.state.value
+        // const country = form.country.value
+        // const type = form.type.value
+        // const description = form.description.value
+        // const min = form.min.value
+        // const max = form.max.value
+        // const currency = form.currency.value
+        // const logo = form.logo.value
+        // const js = form.javaScript.value
+        // const python = form.python.value
+        // const node = form.nodeJS.value
+        // const react = form.react.value
 
-        const allData = {
-            title,
-            company,
-            logo,
-            location : {
-                city,
-                state,
-                country
-            } ,
-            type,
-            description,
-            salaryRange: {
-                min,
-                max,
-                currency
-            },
-            skills: [
-                js,
-                python,
-                node,
-                react
-            ]
-        }
+        // const allData = {
+        //     title,
+        //     company,
+        //     logo,
+        //     location : {
+        //         city,
+        //         state,
+        //         country
+        //     } ,
+        //     type,
+        //     description,
+        //     salaryRange: {
+        //         min,
+        //         max,
+        //         currency
+        //     },
+        //     skills: [
+        //         js,
+        //         python,
+        //         node,
+        //         react
+        //     ]
+        // }
         // console.log(allData);
+
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData.entries())
+        const {min, max, currency, ...newjob} = data;
+        newjob.salaryRange = {min,max,currency}
+        newjob.skills = newjob.skills.split('\n')
+        console.log(newjob);
+        
         fetch('http://localhost:3000/jobs',{
             method: 'POST',
             headers:{
                 'content-type' : 'application/json'
             },
-            body: JSON.stringify(allData)
+            body: JSON.stringify(data)
 
         })
         .then(res=>res.json())
@@ -61,9 +74,10 @@ const PublishJob = () => {
                     text: "Your job has been published.",
                     icon: "success"
                   });
+                  navigate('/mypostedjob')
             }
             // console.log(data);
-            form.reset()
+            // form.reset()
             
         })
         
@@ -176,12 +190,19 @@ const PublishJob = () => {
 
                         {/* skills */}
                         <p className='font-semibold text-lg'>Skills:</p>
-                        <div className='space-x-5'>
+                        <div className='form-control'>
 
-                            <label><input type="checkbox" name="javaScript" value="javaScript" />javaScript</label>
-                            <label><input type="checkbox" name="python" value="python" />python</label>
-                            <label><input type="checkbox" name="react" value="react" />React</label>
-                            <label><input type="checkbox" name="nodeJS" value="nodeJS" />nodeJS</label>
+                            <textarea name="skills" type="text" placeholder='put each skill in a new line' className='input input-bordered' required />
+                        </div>
+                        <p className='font-semibold text-lg'>Deadline</p>
+                        <div className='form-control'>
+
+                            <input name="deadline" type="date" placeholder='dd/mm/yyyy' className='input input-bordered' required />
+                        </div>
+                        <p className='font-semibold text-lg'>HR email</p>
+                        <div className='form-control'>
+
+                            <input name="hr_email" type="email" placeholder='dd/mm/yyyy' defaultValue={user?.email} className='input input-bordered' required />
                         </div>
 
 

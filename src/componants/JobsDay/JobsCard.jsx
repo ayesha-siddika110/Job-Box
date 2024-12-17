@@ -1,8 +1,8 @@
-import React from 'react';
+
 import { Link } from 'react-router-dom';
 
 const JobsCard = ({item}) => {
-    const {title,description,salaryRange,_id,logo} = item || {}
+    const {title,description,salaryRange,_id} = item || {}
     return (
         <div className='p-4 rounded-lg bg-white border shadow-xl'>
             <Link
@@ -28,7 +28,7 @@ const JobsCard = ({item}) => {
           {description}
         </p>
         <p className='mt-2 text-sm font-bold text-gray-600 '>
-          Range: {salaryRange.min} - {salaryRange.max} {salaryRange.currency}
+          Range: {salaryRange?.min} - {salaryRange?.max} {salaryRange?.currency}
         </p>
         <p className='mt-2 text-sm font-bold text-gray-600 mb-3'>Total Bids: 0</p>
       <Link to={`/jobApply/${_id}`} className='bg-blue-100 rounded-md py-2 px-3'>Apply Now</Link>

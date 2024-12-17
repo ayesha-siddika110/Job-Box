@@ -32,7 +32,7 @@ const Navbar = () => {
                         {/* Page content here */}
                         <label htmlFor="my-drawer-4" className="drawer-button"><img src={user?.photoURL} className="w-14 rounded-full h-14 object-cover" alt="" /></label>
                     </div>
-                    <div className="drawer-side">
+                    <div className="drawer-side z-50">
                         <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
                         <ul className="menu bg-base-200 text-base-content  w-80 p-6 space-y-3 mt-24 ">
                             {/* Sidebar content here */}
@@ -67,10 +67,18 @@ const Navbar = () => {
 
         </NavLink>
         <NavLink to="/findJob" >Find A Job</NavLink>
-        <NavLink to="candidates" >Candidates</NavLink>
-        <NavLink to="blogs" >Blogs</NavLink>
-        <NavLink to="pages" >Pages</NavLink>
-        <NavLink to="/publishJob" >Publish a Job</NavLink>
+        {/* <NavLink to="candidates" >Candidates</NavLink> */}
+        {/* <NavLink to="blogs" >Blogs</NavLink> */}
+        {/* <NavLink to="pages" >Pages</NavLink> */}
+        {
+            user && <>
+            <NavLink to="/publishJob" >Publish a Job</NavLink>
+            <NavLink to={`/myjobs/${user?.email}`} >My jobs</NavLink>
+            <NavLink to={`/mypostedjob`} >My posted job</NavLink>
+            
+            </>
+        }
+        
 
     </>
     return (

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 
@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 const JobApply = () => {
     const {id} = useParams()
     const {user} = useContext(AuthContext)
+    const navigate = useNavigate()
 
     console.log(user);
     
@@ -42,6 +43,7 @@ const JobApply = () => {
                     showConfirmButton: false,
                     timer: 1000
                   });
+                navigate(`/myjobs/${user?.email}`)
             }
             console.log(data);
             
